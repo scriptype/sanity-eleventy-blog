@@ -6,7 +6,7 @@ cd ..
 
 echo "\nBuilding Eleventy..."
 cd web
-npx @11ty/eleventy
+npm run build
 cd ..
 
 echo "\nDeploying Neocities..."

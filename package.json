@@ -10,7 +10,8 @@
     "build-web": "lerna bootstrap && cd web && npm run build",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync": "./sync"
   },
   "devDependencies": {
     "lerna": "^3.16.4"

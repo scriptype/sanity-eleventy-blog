@@ -1,12 +1,14 @@
 #!/bin/sh
-cd studio;
-echo "✨ Checking Sanity...";
-sanity check;
+echo "\nChecking Sanity..."
+cd studio
+sanity check
+cd ..
 
-cd ../web;
-echo "✨ Building Eleventy...";
-npx @11ty/eleventy;
+echo "\nBuilding Eleventy..."
+cd web
+npx @11ty/eleventy
+cd ..
 
-echo "✨ Pushing Neocities...";
-neocities push _site;
-cd ..;
+echo "\nDeploying Neocities..."
+neocities push web/_site
+cd ..

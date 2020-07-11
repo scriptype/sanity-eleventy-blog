@@ -18,7 +18,7 @@
     "lerna": "^3.16.4"
   },
   "dependencies": {
-    "glob": "file:node_modules/glob",
+    "glob": "^7.1.6",
     "neocities": "0.0.3"
   }
 }

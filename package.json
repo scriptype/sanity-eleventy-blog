@@ -11,9 +11,14 @@
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sync": "./sync"
+    "sync": "./sync",
+    "ci-deploy": "node deploy.js"
   },
   "devDependencies": {
     "lerna": "^3.16.4"
+  },
+  "dependencies": {
+    "glob": "file:node_modules/glob",
+    "neocities": "0.0.3"
   }
 }

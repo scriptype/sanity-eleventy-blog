@@ -1,3 +1,4 @@
+const fs = require('fs')
 const glob = require('glob')
 const NeoCities = require('neocities')
 
@@ -6,6 +7,12 @@ glob('web/_site/**/*', (err, paths) => {
   if (err) {
     throw err
   }
-  console.log('paths', paths)
+  const filePaths = paths.filter(path => !fs.statSync(path).isDirectory())
+  const sitePaths = filePaths.map(path => path.replace(/^web\/_site\//, ''))
+  const uploadObjects = sitePaths.map(path => ({
+    name: path,
+    path: `./web/_site/${path}`
+  }))
+  api.upload(uploadObjects, console.log)
 })
 

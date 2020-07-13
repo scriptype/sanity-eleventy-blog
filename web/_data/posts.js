@@ -8,7 +8,12 @@ const hasToken = !!client.config().token
 function generatePost (post) {
   return {
     ...post,
-    body: BlocksToMarkdown(post.body, { serializers, ...client.config() })
+    excerpt: BlocksToMarkdown(post.excerpt, { serializers, ...client.config() }),
+    body: BlocksToMarkdown(post.body, { serializers, ...client.config() }),
+    authors: (post.authors || []).map(author => ({
+      ...author,
+      bio: BlocksToMarkdown(author.bio, { serializers, ...client.config() })
+    }))
   }
 }
 
@@ -20,6 +25,7 @@ async function getPosts () {
     publishedAt,
     title,
     slug,
+    excerpt,
     body[]{
       ...,
       children[]{
@@ -32,7 +38,24 @@ async function getPosts () {
         }
       }
     },
-    "authors": authors[].author->
+    mainImage{
+      caption,
+      alt,
+      "url": asset->url
+    },
+    "categories": categories[]->{
+      title,
+      description
+    },
+    "authors": authors[].author->{
+      bio,
+      name,
+      "slug": slug.current,
+      image{
+        alt,
+        "url": asset->url
+      }
+    }
   }`
   const order = `| order(publishedAt asc)`
   const query = [filter, projection, order].join(' ')

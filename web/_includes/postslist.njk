@@ -9,7 +9,7 @@
       {% endif %}
     </a>
   </h2>
-  Published: <time class="postlist-date" datetime="{{ post.publishedAt }}">{{ post.publishedAt|readableDate }}</time>
+  Created: <time class="postlist-date" datetime="{{ post._createdAt }}">{{ post.publishedAt|readableDate }}</time>
   <div class="postlist-item">
     {% if post.mainImage %}
       <img src="{{ post.mainImage.url }}?h=200" alt="{{ post.mainImage.alt }}" />

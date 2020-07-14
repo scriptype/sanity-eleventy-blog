@@ -19,8 +19,7 @@ function generatePost (post) {
 
 async function getPosts () {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
-  const filter = groq`*[_type == "post" && defined(slug) && publishedAt < now()]`
-  const projection = groq`{
+  const query = groq`*[_type == "post" && defined(slug) && publishedAt < now()]{
     _id,
     publishedAt,
     title,
@@ -56,9 +55,7 @@ async function getPosts () {
         "url": asset->url
       }
     }
-  }`
-  const order = `| order(publishedAt asc)`
-  const query = [filter, projection, order].join(' ')
+  } | order(publishedAt)`
   const docs = await client.fetch(query).catch(err => console.error(err))
   const reducedDocs = overlayDrafts(hasToken, docs)
   const preparePosts = reducedDocs.map(generatePost)

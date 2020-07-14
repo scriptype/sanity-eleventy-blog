@@ -43,6 +43,11 @@ module.exports = function(eleventyConfig) {
     const md = new markdownIt(options)
     return md.render(value)
   })
+
+  eleventyConfig.addFilter("json", function(value) {
+    return JSON.stringify(value)
+  })
+
   return {
     templateFormats: [
       "md",

@@ -9,5 +9,3 @@ pagination:
   addAllPagesToCollections: true
 permalink: posts/{{ post.slug.current | slug }}/index.html
 ---
-
-

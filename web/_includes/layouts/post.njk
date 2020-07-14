@@ -3,7 +3,13 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 ---
 <article>
-  <h1>{{ post.title }}</h1>
+  <h1><a href=".">{{ post.title }}</a></h1>
+  {% if post.mainImage %}
+    <figure>
+      <img src="{{ post.mainImage.url }}?max-w=960" alt="{{ post.mainImage.alt }}" />
+      <figcap>{{ post.mainImage.caption }}</figcap>
+    </figure>
+  {% endif %}
   <p>Written by {% for author in post.authors %}<a href="/authors/{{author.slug}}">{{author.name}}</a>{% endfor %}  </p>
   <p>Categories {% for category in post.categories %}<a href="/categories/{{category.title | slug}}">{{category.title}}</a>{% endfor %}  </p>
   {{ post.body | markdownify | safe }}

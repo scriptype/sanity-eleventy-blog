@@ -1,1 +1,0 @@
-# sanity-eleventy-blog-web

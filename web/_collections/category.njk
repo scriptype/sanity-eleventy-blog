@@ -3,6 +3,8 @@ layout: layouts/category
 tags:
   - myCategories
   - nav
+eleventyComputed:
+  navtitle: "{{ category.title }}"
 pagination:
   alias: category
   data: categories

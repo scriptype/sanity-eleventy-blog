@@ -48,6 +48,11 @@ module.exports = function(eleventyConfig) {
     return JSON.stringify(value)
   })
 
+  eleventyConfig.addCollection("myPosts", function(collectionApi) {
+    const myPosts = collectionApi.getFilteredByTag("myPosts")
+    return myPosts.sort((a, b) => b.data.post.date - a.data.post.date)
+  });
+
   return {
     templateFormats: [
       "md",

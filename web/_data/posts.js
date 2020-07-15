@@ -13,13 +13,14 @@ function generatePost (post) {
     authors: (post.authors || []).map(author => ({
       ...author,
       bio: BlocksToMarkdown(author.bio, { serializers, ...client.config() })
-    }))
+    })),
+    date: new Date(post.publishedAt)
   }
 }
 
 async function getPosts () {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
-  const query = groq`*[_type == "post" && defined(slug) && publishedAt < now()] | order(_createdAt desc) {
+  const query = groq`*[_type == "post" && defined(slug) && publishedAt < now()] | order(publishedAt desc) {
     _id,
     _createdAt,
     publishedAt,

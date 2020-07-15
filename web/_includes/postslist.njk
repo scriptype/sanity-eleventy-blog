@@ -12,7 +12,7 @@
   Created: <time class="postlist-date" datetime="{{ post._createdAt }}">{{ post.publishedAt|readableDate }}</time>
   <div class="postlist-item">
     {% if post.mainImage %}
-      <img src="{{ post.mainImage.url }}?h=200" alt="{{ post.mainImage.alt }}" />
+      <img src="{{ post.mainImage.url }}?w=600&h=200&fit=crop" alt="{{ post.mainImage.alt }}" />
     {% endif %}
     {% if post.excerpt %}
       <p class="postlist-excerpt">

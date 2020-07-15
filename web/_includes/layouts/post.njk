@@ -6,7 +6,7 @@ templateClass: tmpl-post
   <h1><a href=".">{{ post.title }}</a></h1>
   {% if post.mainImage %}
     <figure>
-      <img src="{{ post.mainImage.url }}?max-w=960" alt="{{ post.mainImage.alt }}" />
+      <img src="{{ post.mainImage.url }}?w=960&fit=max" alt="{{ post.mainImage.alt }}" />
       <figcap>{{ post.mainImage.caption }}</figcap>
     </figure>
   {% endif %}

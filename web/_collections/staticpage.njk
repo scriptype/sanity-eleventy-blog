@@ -4,7 +4,7 @@ tags:
   - myStaticPages
   - nav
 eleventyComputed:
-  navtitle: "{{ page.title }}"
+  navtitle: "{{ 'hidden' if page.hidden else page.title }}"
 pagination:
   alias: page
   data: staticpages

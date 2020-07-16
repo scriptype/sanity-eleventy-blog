@@ -14,7 +14,8 @@ function generatePost (post) {
       ...author,
       bio: BlocksToMarkdown(author.bio, { serializers, ...client.config() })
     })),
-    date: new Date(post.publishedAt)
+    date: new Date(post.publishedAt),
+    hidden: post.categories.find(c => c.title === 'Hidden')
   }
 }
 

@@ -1,6 +1,6 @@
 <ul class="nav">
   {%- for nav in collections.nav -%}
-    {% if nav.data.navtitle !== "Hidden" and nav.data.navtitle !== "Highlights" %}
+    {% if nav.data.navtitle !== "hidden" %}
       <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}">
         <a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
       </li>

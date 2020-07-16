@@ -4,7 +4,7 @@ tags:
   - myCategories
   - nav
 eleventyComputed:
-  navtitle: "{{ category.title }}"
+  navtitle: "{{ 'hidden' if category.hidden else category.title }}"
 pagination:
   alias: category
   data: categories

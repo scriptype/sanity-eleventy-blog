@@ -1,0 +1,14 @@
+---
+layout: layouts/staticpage
+tags:
+  - myStaticPages
+  - nav
+eleventyComputed:
+  navtitle: "{{ page.title }}"
+pagination:
+  alias: page
+  data: staticpages
+  size: 1
+  addAllPagesToCollections: true
+permalink: "{{ page.slug.current | slug }}/index.html"
+---

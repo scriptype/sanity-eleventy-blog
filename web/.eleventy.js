@@ -48,6 +48,12 @@ module.exports = function(eleventyConfig) {
     return JSON.stringify(value)
   })
 
+  eleventyConfig.addNunjucksFilter("category", function(posts, categoryTitle) {
+    return posts.filter(post => {
+      return !!(post.data.post.categories || []).find(category => category.title === categoryTitle)
+    })
+  })
+
   eleventyConfig.addCollection("myPosts", function(collectionApi) {
     const myPosts = collectionApi.getFilteredByTag("myPosts")
     return myPosts.sort((a, b) => b.data.post.date - a.data.post.date)

@@ -2,5 +2,8 @@
 layout: layouts/base.njk
 templateClass: tmpl-category
 ---
-<h1>{{ category.name }}</h1>
+<h1>{{ category.title }}</h1>
 <p>{{ category.description }}</p>
+
+{% set postslist = collections.myPosts | category(category.title) %}
+{% include "postslist.njk" %}

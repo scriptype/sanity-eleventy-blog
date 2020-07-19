@@ -28,5 +28,6 @@
     </footer>
 
     <!-- Current page: {{ page.url | url }} -->
+    <strong>Last Build:</strong> {{ git.message }} (<a href="https://github.com/scriptype/sanity-eleventy-blog/commit/{{git.hash}}">{{ git.hash }}</a>)
   </body>
 </html>

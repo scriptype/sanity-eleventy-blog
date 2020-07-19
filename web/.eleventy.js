@@ -78,26 +78,20 @@ module.exports = function(eleventyConfig) {
       return navItems.find(item => item.url === url)
     })
 
-    const categoryItems = navItems.filter(item => {
-      return !!item.data.category && !!findLatestPostInCategory(item.data.category.title, item.data.posts)
+    const categoryItems = navItems.filter(item => !!item.data.category)
+
+    const categoryItemsWithLatestPosts = []
+    categoryItems.forEach(item => {
+      item.latestPost = findLatestPostInCategory(item.data.category.title, item.data.posts)
+      if (item.latestPost) {
+        categoryItemsWithLatestPosts.push(item)
+      }
     })
 
-    const categoryUpdates = categoryItems.reduce((dictionary, item) => {
-      const categoryTitle = item.data.category.title
-      const latestPost = findLatestPostInCategory(categoryTitle, item.data.posts)
-      if (!latestPost) {
-        return dictionary
-      }
-      return {
-        ...dictionary,
-        [categoryTitle]: latestPost.date
-      }
-    }, {})
-    const categoriesSorted = categoryItems.sort((itemA, itemB) => {
-      const categoryTitleA = itemA.data.category.title
-      const categoryTitleB = itemB.data.category.title
-      return categoryUpdates[categoryTitleB] - categoryUpdates[categoryTitleA]
+    const categoriesSorted = categoryItemsWithLatestPosts.sort((itemA, itemB) => {
+      return itemB.latestPost.date - itemA.latestPost.date
     })
+
     return [
       ...fixedItems,
       ...categoriesSorted

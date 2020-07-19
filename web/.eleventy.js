@@ -59,6 +59,51 @@ module.exports = function(eleventyConfig) {
     return myPosts.sort((a, b) => b.data.post.date - a.data.post.date)
   });
 
+  const fixedNavigation = [
+    '/', // home
+    '/about-me/',
+    '/posts/' // archive
+  ]
+
+  const findLatestPostInCategory = (categoryTitle, posts) => {
+    const categoryPosts = posts.filter(post => {
+      return post.categories && post.categories.some(cat => cat.title === categoryTitle)
+    })
+    return categoryPosts[0]
+  }
+
+  eleventyConfig.addCollection("nav", function(collectionApi) {
+    const navItems = collectionApi.getFilteredByTag("nav")
+    const fixedItems = fixedNavigation.map(url => {
+      return navItems.find(item => item.url === url)
+    })
+
+    const categoryItems = navItems.filter(item => {
+      return !!item.data.category && !!findLatestPostInCategory(item.data.category.title, item.data.posts)
+    })
+
+    const categoryUpdates = categoryItems.reduce((dictionary, item) => {
+      const categoryTitle = item.data.category.title
+      const latestPost = findLatestPostInCategory(categoryTitle, item.data.posts)
+      if (!latestPost) {
+        return dictionary
+      }
+      return {
+        ...dictionary,
+        [categoryTitle]: latestPost.date
+      }
+    }, {})
+    const categoriesSorted = categoryItems.sort((itemA, itemB) => {
+      const categoryTitleA = itemA.data.category.title
+      const categoryTitleB = itemB.data.category.title
+      return categoryUpdates[categoryTitleB] - categoryUpdates[categoryTitleA]
+    })
+    return [
+      ...fixedItems,
+      ...categoriesSorted
+    ]
+  });
+
   return {
     templateFormats: [
       "md",

@@ -1,33 +1,38 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ renderData.title or title or metadata.title }}</title>
-    <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
-      {# <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}"> #}
-    {% set css %}
-      {% include "style.css" %}
-    {% endset %}
-    <style>
-      {{ css | cssmin | safe }}
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
-      {% include "nav.njk" %}
-    </header>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ renderData.title or title or metadata.title }}</title>
+        <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
+        {# <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}"> #}
+        {% set css %}
+        {% include "style/reset.css" %}
+        {% include "style/base.css" %}
+        {% include "style/typography.css" %}
+        {% include "style/layout.css" %}
+        {% endset %}
+        <style>
+{{ css | cssmin | safe }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header class="meta-container">
+                <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
+                {% include "nav.njk" %}
+            </header>
 
-    <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
-      {{ content | safe }}
-    </main>
+            <main class="main-container {% if templateClass %}{{ templateClass }}{% endif %}">
+                {{ content | safe }}
+            </main>
+        </div>
 
-    <footer>
-        <p><em>This is an <a href="https://www.11ty.io/">Eleventy</a> + <a href="https://www.sanity.io">Sanity.io</a> project inspired by the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
-    </footer>
+        <footer>
+            <p><em>This is an <a href="https://www.11ty.io/">Eleventy</a> + <a href="https://www.sanity.io">Sanity.io</a> project inspired by the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
+        </footer>
 
-    <!-- Current page: {{ page.url | url }} -->
-    <strong>Last Build:</strong> {{ git.message }} (<a href="https://github.com/scriptype/sanity-eleventy-blog/commit/{{git.hash}}">{{ git.hash }}</a>)
-  </body>
+        <!-- Current page: {{ page.url | url }} -->
+        <strong>Last Build:</strong> {{ git.message }} (<a href="https://github.com/scriptype/sanity-eleventy-blog/commit/{{git.hash}}">{{ git.hash }}</a>)
+    </body>
 </html>

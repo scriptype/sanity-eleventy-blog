@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    width: 1280px;
+    margin: 0 auto;
+
+    @media (min-width: 1280px) {
+        width: 100%;
+    }
+}
+
+.main-container {
+    padding-left: 200px;
+}

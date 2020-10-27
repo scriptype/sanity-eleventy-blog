@@ -48,10 +48,20 @@ module.exports = function(eleventyConfig) {
     return JSON.stringify(value)
   })
 
+  const postHasCategory = (post, categoryTitle) => {
+    return !!(post.data.post.categories || []).find(category => category.title === categoryTitle)
+  }
+
   eleventyConfig.addNunjucksFilter("category", function(posts, categoryTitle) {
-    return posts.filter(post => {
-      return !!(post.data.post.categories || []).find(category => category.title === categoryTitle)
-    })
+    return posts.filter(post => postHasCategory(post, categoryTitle))
+  })
+
+  eleventyConfig.addNunjucksFilter("excludeCategory", function(posts, categoryTitle) {
+    return posts.filter(post => !postHasCategory(post, categoryTitle))
+  })
+
+  eleventyConfig.addNunjucksFilter("head", function(posts, number) {
+    return posts.slice(0, number)
   })
 
   eleventyConfig.addCollection("myPosts", function(collectionApi) {

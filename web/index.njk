@@ -5,11 +5,11 @@ tags:
 navtitle: Home
 ---
 <h1>Highlights</h1>
-{% set highlights = collections.posts | category("Highlights") | head(3) %}
+{% set highlights = collections.post | category("Highlights") | head(3) %}
 {% include "highlights.njk" %}
 
 <h1>Latest Posts</h1>
-{% set postslist = collections.posts | excludeCategory("Highlights") | head(5) %}
+{% set postslist = collections.post | excludeCategory("Highlights") | head(5) %}
 {% include "postslist.njk" %}
 
 <p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>

@@ -1,5 +1,6 @@
-const { DateTime } = require("luxon");
+const string = require("string");
 const util = require('util')
+const { DateTime } = require("luxon");
 const cssmin = require("cssmin");
 
 module.exports = function(eleventyConfig) {
@@ -20,6 +21,11 @@ module.exports = function(eleventyConfig) {
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   eleventyConfig.addFilter('htmlDateString', (dateObj) => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
+  });
+
+  eleventyConfig.addFilter('slugify', input => {
+    if (!input) { return false };
+    return string(input).slugify().toString();
   });
 
   let markdownIt = require("markdown-it");

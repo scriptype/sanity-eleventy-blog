@@ -1,0 +1,20 @@
+<h2 class="postlist-title">
+  <a href="{{ item.url | url }}" class="postlist-link">
+    {% if post.title %}
+      {{ post.title }}
+    {% else %}
+      <code>{{ item.url }}</code>
+    {% endif %}
+  </a>
+</h2>
+Published: <time class="postlist-date" datetime="{{ post.date }}">{{ post.date | readableDate }}</time>
+<div class="postlist-item">
+  {% if post.mainImage %}
+    <img src="{{ post.mainImage.url }}?w=600&h=200&fit=crop" alt="{{ post.mainImage.alt }}" />
+  {% endif %}
+  {% if post.excerpt %}
+    <p class="postlist-excerpt">
+      {{ post.excerpt }}
+    </p>
+  {% endif %}
+</div>

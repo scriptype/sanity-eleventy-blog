@@ -3,10 +3,10 @@ layout: layouts/home.njk
 tags:
   - nav
 navtitle: Archive
-permalink: /posts/
+permalink: /archive/
 ---
 
 <h1>Archive</h1>
 
-{% set postslist = posts %}
+{% set postslist = collections.posts %}
 {% include "postslist.njk" %}

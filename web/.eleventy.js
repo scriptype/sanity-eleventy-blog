@@ -73,7 +73,7 @@ module.exports = function(eleventyConfig) {
   const fixedNavigation = [
     '/', // home
     '/about-me/',
-    '/posts/' // archive
+    '/archive/'
   ]
 
   const findLatestPostInCategory = (categoryTitle, posts) => {

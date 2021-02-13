@@ -5,5 +5,5 @@ templateClass: tmpl-category
 <h1>{{ category.title }}</h1>
 <p>{{ category.description }}</p>
 
-{% set postslist = collections.myPosts | category(category.title) %}
+{% set postslist = posts | category(category.title) %}
 {% include "postslist.njk" %}

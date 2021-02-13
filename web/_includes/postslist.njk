@@ -1,5 +1,4 @@
-{% for item in postslist %}
-  {% set post = item.data.post %}
+{% for post in postslist %}
   <h2 class="postlist-title">
     <a href="{{ item.url | url }}" class="postlist-link">
       {% if post.title %}

@@ -49,7 +49,7 @@ module.exports = function(eleventyConfig) {
   })
 
   const postHasCategory = (post, categoryTitle) => {
-    return !!(post.data.post.categories || []).find(category => category.title === categoryTitle)
+    return !!(post.categories || []).find(category => category.title === categoryTitle)
   }
 
   eleventyConfig.addNunjucksFilter("category", function(posts, categoryTitle) {
@@ -63,11 +63,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addNunjucksFilter("head", function(posts, number) {
     return posts.slice(0, number)
   })
-
-  eleventyConfig.addCollection("myPosts", function(collectionApi) {
-    const myPosts = collectionApi.getFilteredByTag("myPosts")
-    return myPosts.sort((a, b) => b.data.post.date - a.data.post.date)
-  });
 
   const fixedNavigation = [
     '/', // home

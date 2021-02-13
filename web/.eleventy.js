@@ -72,6 +72,11 @@ module.exports = function(eleventyConfig) {
     return posts.slice(0, number)
   })
 
+  eleventyConfig.addCollection("post", function(collectionApi) {
+    const posts = collectionApi.getFilteredByTag("post")
+    return posts.sort((a, b) => b.data.post.date - a.data.post.date)
+  });
+
   const fixedNavigation = [
     '/', // home
     '/about-me/',

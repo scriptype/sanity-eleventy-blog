@@ -5,7 +5,7 @@ tags:
 navtitle: Home
 ---
 <h1>Highlights</h1>
-{% set highlights = posts | category("Highlights") | head(3) %}
+{% set highlights = collections.posts | category("Highlights") | head(3) %}
 {% include "highlights.njk" %}
 
 <h1>Latest Posts</h1>

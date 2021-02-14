@@ -35,7 +35,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Deploy
-        env: # Or as an environment variable
+        env:
           NEOCITIES_USER: ${{ secrets.NEOCITIES_USER }}
           NEOCITIES_PASS: ${{ secrets.NEOCITIES_PASS }}
-        run: node ./deploy.js
+        run: npm run ci-deploy

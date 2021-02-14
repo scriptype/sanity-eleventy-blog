@@ -3,13 +3,26 @@ layout: layouts/home.njk
 tags:
   - nav
 navtitle: Home
+pagination:
+  data: collections.post
+  size: 5
+permalink: "{% if pagination.pageNumber > 0 %}page/{{pagination.pageNumber + 1}}/index.html{% else %}index.html{% endif %}"
 ---
-<h1>Highlights</h1>
-{% set highlights = collections.post | category("Highlights") | head(3) %}
-{% include "highlights.njk" %}
+{% if pagination.pageNumber == 0 %}
+  <h1>Highlights</h1>
+  {% set highlights = collections.post | category("Highlights") | head(3) %}
+  {% include "highlights.njk" %}
+{% endif %}
 
-<h1>Latest Posts</h1>
-{% set postslist = collections.post | excludeCategory("Highlights") | head(5) %}
+<h1>Posts</h1>
+{% set postslist = pagination.items %}
 {% include "postslist.njk" %}
 
-<p>More posts can be found in <a href="{{ '/archive/' | url }}">the archive</a>.</p>
+<div class="pagination">
+  {% if pagination.previous %}
+    <a href="{{ pagination.previous | nicePageUrl }}">← Newer Posts</a>
+  {% endif %}
+  {% if pagination.next %}
+    <a href="{{ pagination.next | nicePageUrl }}">Older Posts →</a>
+  {% endif %}
+</div>

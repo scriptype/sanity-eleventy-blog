@@ -1,6 +1,14 @@
 ---
 layout: layouts/base.njk
 templateClass: tmpl-post
+tags:
+  - post
+pagination:
+  alias: post
+  data: posts
+  size: 1
+  addAllPagesToCollections: true
+permalink: "posts/{{ post.slug.current }}/index.html"
 ---
 <article>
   <h1><a href=".">{{ post.title }}</a></h1>

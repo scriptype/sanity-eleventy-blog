@@ -1,10 +1,7 @@
 const fs = require('fs')
 const glob = require('glob')
-const NeoCities = require('neocities')
 
-const api = new NeoCities(process.env.NEOCITIES_USER, process.env.NEOCITIES_PASS)
-
-const deploySite = () => {
+const deploySite = (api) => {
   return new Promise((resolve, reject) => {
     glob('web/_site/**/*', (err, paths) => {
       if (err) {
@@ -21,7 +18,7 @@ const deploySite = () => {
   })
 }
 
-const deployStudio = () => {
+const deployStudio = (api) => {
   return new Promise((resolve, reject) => {
     glob('studio/dist/**/*', (err, paths) => {
       if (err) {
@@ -38,10 +35,7 @@ const deployStudio = () => {
   })
 }
 
-Promise.resolve()
-  .then(deploySite)
-  .then(deployStudio)
-  .then(console.log)
-  .catch(err => {
-    throw err
-  })
+module.exports = {
+  deploySite,
+  deployStudio
+}

@@ -12,7 +12,8 @@
     "postinstall": "lerna bootstrap",
     "test": "echo \"Error: no test specified\" && exit 1",
     "sync": "./sync",
-    "ci-deploy": "node deploy.js"
+    "ci-deploy": "node scripts/deploy-all.js",
+    "ci-deploy-web": "node scripts/deploy-web.js"
   },
   "devDependencies": {
     "lerna": "^3.16.4"

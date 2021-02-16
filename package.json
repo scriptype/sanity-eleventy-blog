@@ -9,7 +9,7 @@
     "build-studio": "lerna bootstrap && cd studio && npm run build",
     "build-web": "lerna bootstrap && cd web && npm run build",
     "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap",
     "test": "echo \"Error: no test specified\" && exit 1",
     "sync": "./sync",
     "ci-deploy": "node scripts/deploy-all.js",

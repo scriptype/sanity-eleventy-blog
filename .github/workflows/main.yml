@@ -30,7 +30,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build
-        run: npm run build
+        run: |
+          npm run bootstrap
+          npm run build
 
       # Runs a single command using the runners shell
       - name: Deploy
